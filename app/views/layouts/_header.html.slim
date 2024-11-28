@@ -1,0 +1,48 @@
+nav.fixed.top-0.z-50.w-full.bg-white.border-b.border-gray-200.dark:bg-gray-800.dark:border-gray-700
+  .px-3.py-3.lg:px-5.lg:pl-3
+    .flex.items-center.justify-between
+      .flex.items-center.justify-start.rtl:justify-end
+        button.inline-flex.items-center.p-2.text-sm.text-gray-500.rounded-lg.sm:hidden.hover:bg-gray-100.focus:outline-none.focus:ring-2.focus:ring-gray-200.dark:text-gray-400.dark:hover:bg-gray-700.dark:focus:ring-gray-600[data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button"]
+          span.sr-only
+            | Open sidebar
+          svg.w-6.h-6[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
+            path[clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"]
+        = link_to root_path, class: 'flex ms-2 md:me-24' do
+          picture
+            source srcset=asset_path('logo.webp') type="image/webp"
+            img src=asset_path('logo.webp') alt="Babbler Logo" class='h-8 me-3 w-full object-cover'
+          span.self-center.text-xl.font-semibold.sm:text-2xl.whitespace-nowrap.dark:text-white
+            | Babbler
+          .flex.items-center
+
+      - if current_user
+        .flex.items-center.ms-3
+          div
+            button.flex.text-sm.rounded-full[type="button" aria-expanded="false" data-dropdown-toggle="dropdown-user"]
+              span.sr-only
+                | Menu
+              = render Avatar::Component.new(user: current_user)
+          #dropdown-user.z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded.shadow.dark:bg-gray-700.dark:divide-gray-600
+            .px-4.py-3[role="none"]
+              p.text-sm.text-gray-900.dark:text-white[role="none"]
+                = current_user.username
+              p.text-sm.font-medium.text-gray-900.truncate.dark:text-gray-300[role="none"]
+                = current_user.email
+            ul.py-1[role="none"]
+              li
+                a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100.dark:text-gray-300.dark:hover:bg-gray-600.dark:hover:text-white[href="#" role="menuitem"]
+                  | Profile
+              li
+                = link_to 'Sign Out', destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+      - else 
+       .flex.items-center.ms-3
+          div
+            button.flex.text-sm.rounded-full[type="button" aria-expanded="false" data-dropdown-toggle="dropdown-user"]
+              span.sr-only
+                | Menu
+              i.fa-solid.fa-user-secret.w-8.h-8.rounded-full.text-3xl
+          #dropdown-user.z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded.shadow.dark:bg-gray-700.dark:divide-gray-600
+            ul.py-1[role="none"]
+              li
+                = link_to 'Sign in', new_user_session_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+

@@ -1,0 +1,9 @@
+= form_with(model: tweet, html: { class: "bg-white shadow-md rounded-lg p-4 mb-4" }) do |f|
+  - if tweet.errors.any?
+    .flex.items-start.error-message.text-red-600
+      = tweet.errors.full_messages.to_sentence.capitalize
+  .w-full.mb-2
+    = f.text_area :content, placeholder: "What do you want to say...", class: "flex-auto w-full p-0 bordered outline-none"
+    .flex.space-x-4.mt-4
+      = link_to 'Cancel', tweets_path, class: 'px-4 py-1 bg-yellow-400 text-white rounded-md hover:bg-yellow-500'
+      = f.submit "Tweet", class: "bg-blue-500 hover:bg-opacity-90 text-white rounded px-4 py-1"

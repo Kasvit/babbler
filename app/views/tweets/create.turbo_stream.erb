@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "tweets", @tweet %>
+<%= turbo_stream.update 'new_tweet', "" %>
+<%- render_turbo_stream_flash_messages %>

@@ -1,0 +1,8 @@
+= turbo_stream_from "tweets"
+
+- if current_user
+  = link_to 'New Tweet', new_tweet_path, data: { turbo_frame: 'new_tweet' }, class: 'px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 inline-block mb-4'
+  = turbo_frame_tag 'new_tweet'
+
+= turbo_frame_tag 'tweets' do
+  = render @tweets

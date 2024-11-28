@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Babbler</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render 'layouts/header' %>
+    <%- if current_user %>
+      <%= render 'layouts/sidebar' %>
+      <main class="p-4 sm:ml-48 mt-14">
+        <%= turbo_frame_tag 'flash-message' do %>
+          <%= render 'layouts/flash_message' %>
+        <% end %>
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+          <%= yield %>
+        </div>
+      </main>
+    <% else %>
+      <main class="p-4 mt-14">
+        <%= turbo_frame_tag 'flash-message' do %>
+          <%= render 'layouts/flash_message' %>
+        <% end %>
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+          <%= yield %>
+        </div>
+      </main>
+    <% end %>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.turbo.min.js"></script>
+  </body>
+</html>
