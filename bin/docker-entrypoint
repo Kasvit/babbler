@@ -5,9 +5,15 @@ if [ -f /rails/tmp/pids/server.pid ]; then
   rm /rails/tmp/pids/server.pid
 fi
 
-# If running the rails server, prepare the database.
+# Wait for the database to be ready
+until pg_isready -h "${POSTGRES_HOST}" -p "${POSTGRES_PORT}" -U "${POSTGRES_USER}" -d "${POSTGRES_DB}"; do
+  echo "Waiting for database to be ready..."
+  sleep 2
+done
+
+# Prepare the database if running the Rails server
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
   ./bin/rails db:prepare
 fi
 
-exec "$@"
+exec "${@}"

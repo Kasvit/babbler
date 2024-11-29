@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ./bin/rails server -b 0.0.0.0 -p 3000
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0'"
     entrypoint: /usr/bin/entrypoint.sh
     volumes:
       - .:/rails
@@ -14,7 +14,12 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_URL: postgres://postgres:password@db:5432/babbler_development
-      REDIS_URL: redis://localhost:6379/0
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: babbler_development
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      REDIS_URL: redis://redis:6379/1
       CABLE_URL: ws://action-cable:28080
     depends_on:
       - db
@@ -33,6 +38,8 @@ services:
   redis:
     image: redis:7
     command: ["redis-server"]
+    networks:
+      - default
 
   sidekiq:
     build:
@@ -44,7 +51,7 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_URL: postgres://postgres:password@db:5432/babbler_development
-      REDIS_URL: redis://localhost:6379/0
+      REDIS_URL: redis://redis:6379/1
     depends_on:
       - db
       - redis
@@ -62,7 +69,7 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_URL: postgres://postgres:password@db:5432/babbler_development
-      REDIS_URL: redis://localhost:6379/0
+      REDIS_URL: redis://redis:6379/1
     depends_on:
       - db
       - redis
