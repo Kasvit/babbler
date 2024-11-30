@@ -11,9 +11,8 @@ until pg_isready -h "${POSTGRES_HOST}" -p "${POSTGRES_PORT}" -U "${POSTGRES_USER
   sleep 2
 done
 
-# Prepare the database if running the Rails server
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  ./bin/rails db:prepare
-fi
+# Run migrations
+echo "Running database migrations..."
+./bin/rails db:prepare
 
-exec "${@}"
+exec "$@"
