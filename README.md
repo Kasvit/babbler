@@ -6,7 +6,7 @@ Something similar to twitter.
 ### Next steps:
 - [x] Add basic functionality with tests
 - [x] Add a new logo
-- [ ] Add docker support
+- [x] Add docker support
 - [ ] Add CI/CD
 - [ ] Deploy to Kamal
 - [ ] Replace font-awesome with heroicon
