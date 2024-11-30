@@ -24,16 +24,17 @@ gem 'slim'
 gem 'tailwindcss-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'view_component'
-gem 'webpacker'
+gem 'kamal'
 
 group :development, :test do
   gem 'brakeman', require: false
-  gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
+  gem 'debug', platforms: [:mri]
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry'
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
+  gem 'dotenv'
 end
 
 group :development do

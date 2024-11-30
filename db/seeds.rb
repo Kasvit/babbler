@@ -18,7 +18,7 @@ end
 # Create tweets
 tweets = []
 users.each do |user|
-  3.times do
+  2.times do
     tweets << Tweet.create!(
       content: Faker::Lorem.sentence(word_count: 10),
       user: user

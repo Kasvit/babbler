@@ -1,20 +1,33 @@
 # README
 
-PET project for trying and testing Rails Turbo.
+PET project `Babbler` for trying and testing Rails Turbo.
 Something similar to twitter.
 
-## Next steps:
-- Add CI/CD
-- Deploy to Kamal
-- Add about me
-- Add pages for 'My tweets', user profile with his tweets
-- Add liked tweets
-- Add follows
-- Add profile settings for viewing profile
-- Add user roles, admin panel
-- Add nested tweet comments
-- Add site settings
-- Add feature flags
-- Add AI tweet and comments generator
-- Add admin panel for sheduled jobs
-- Add AB tests
+### Next steps:
+- [x] Add basic functionality with tests
+- [x] Add a new logo
+- [x] Add docker support
+- [ ] Add CI/CD
+- [ ] Deploy to Kamal
+- [ ] Replace font-awesome with heroicon
+- [ ] Add about me
+- [ ] Add pages for 'My tweets', user profile with his tweets
+- [ ] Add liked tweets
+- [ ] Add follows
+- [ ] Add profile settings for viewing profile
+- [ ] Add user roles, admin panel
+- [ ] Add nested tweet comments
+- [ ] Add site settings
+- [ ] Add feature flags
+- [ ] Add AI tweet and comments generator
+- [ ] Add admin panel for sheduled jobs
+- [ ] Add AB tests
+
+
+#### Docker
+Run
+```
+docker build .
+docker-compose up --build
+# docker-compose down --volumes # for removing
+```
