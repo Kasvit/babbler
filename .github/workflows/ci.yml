@@ -54,6 +54,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -64,6 +69,10 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+          npm install
+          npm install -g yarn
+          yarn install --check-files
+          yarn add flowbite
 
       - name: Precompile assets
         run: |
