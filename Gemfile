@@ -28,7 +28,6 @@ gem 'view_component'
 
 group :development, :test do
   gem 'brakeman', require: false
-  gem 'bundler-audit', require: false
   gem 'debug', platforms: [:mri]
   gem 'factory_bot_rails'
   gem 'faker'
