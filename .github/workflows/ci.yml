@@ -12,14 +12,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Set up Ruby
+      - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
           bundler-cache: true
-      - name: Install linting gems
-        run:
-          gem install bundler-audit
       - name: Generate binstubs
         run: bundle binstubs bundler-audit brakeman rubocop
       - name: Security audit dependencies
@@ -41,18 +38,13 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
+          POSTGRES_DB: babbler_test
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
       redis:
         image: redis:7
         ports:
           - "6379:6379"
-
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: postgres://rails:password@127.0.0.1:5432/rails_test
-      REDIS_URL: redis://127.0.0.1:6379/0
 
     steps:
       - name: Checkout code
@@ -64,31 +56,45 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
 
+      - name: Install Redis CLI
+        run: sudo apt-get update && sudo apt-get install -y redis-tools
+
+      - name: Load environment variables
+        run: cp .env.test .env
+
       - name: Install dependencies
         run: |
+          gem install bundler
           bundle install --jobs 4 --retry 3
 
       - name: Wait for PostgreSQL to be ready
         run: |
-          until pg_isready -h localhost -p 5432; do
+          until pg_isready -h localhost -p 5432 -U postgres; do
             echo "Waiting for PostgreSQL..."
             sleep 3
           done
 
-      - name: Install Redis and CLI tools
-        run: sudo apt-get install -y redis-server redis-tools
-      
+      - name: Log PostgreSQL status
+        run: pg_isready -h localhost -p 5432 -U postgres
+
       - name: Wait for Redis to be ready
         run: |
-          until redis-cli -h localhost ping; do
+          until redis-cli -h 127.0.0.1 -p 6379 ping; do
             echo "Waiting for Redis..."
             sleep 3
           done
 
+      - name: Log Redis status
+        run: redis-cli -h 127.0.0.1 -p 6379 ping
+
       - name: Set up database
         run: |
-          bundle exec rails db:create
-          bundle exec rails db:schema:load
+          bundle exec rails db:prepare
+        env:
+          DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/babbler_test
 
       - name: Run tests
         run: bundle exec rspec
+        env:
+          DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/babbler_test
+          REDIS_URL: redis://127.0.0.1:6379/1

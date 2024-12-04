@@ -27,6 +27,7 @@ gem 'view_component'
 gem 'kamal'
 
 group :development, :test do
+  gem 'bundler-audit', require: false
   gem 'brakeman', require: false
   gem 'debug', platforms: [:mri]
   gem 'factory_bot_rails'
