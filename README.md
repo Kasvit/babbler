@@ -7,7 +7,7 @@ Something similar to twitter.
 - [x] Add basic functionality with tests
 - [x] Add a new logo
 - [x] Add docker support
-- [ ] Add CI/CD
+- [x] Add CI/CD
 - [ ] Deploy to Kamal
 - [ ] Replace font-awesome with heroicon
 - [ ] Add about me
