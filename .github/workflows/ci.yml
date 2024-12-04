@@ -76,16 +76,6 @@ jobs:
           POSTGRES_HOST: 127.0.0.1
           POSTGRES_PORT: 5432
 
-      - name: Log PostgreSQL status
-        run: pg_isready -h 127.0.0.1 -p 5432 -U postgres
-
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: babbler_test
-          POSTGRES_HOST: 127.0.0.1
-          POSTGRES_PORT: 5432
-
       - name: Wait for Redis to be ready
         run: |
           until redis-cli -h 127.0.0.1 -p 6379 ping; do
@@ -96,28 +86,20 @@ jobs:
         env:
           REDIS_URL: redis://127.0.0.1:6379/1
 
-      - name: Log Redis status
-        run: redis-cli -h 127.0.0.1 -p 6379 ping
-
-        env:
-          REDIS_URL: redis://127.0.0.1:6379/1
-
       - name: Set up database
         run: |
           bundle exec rails db:prepare
-
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/babbler_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: babbler_test
           POSTGRES_HOST: 127.0.0.1
           POSTGRES_PORT: 5432
+          DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/babbler_test
 
       - name: Run tests
         run: bundle exec rspec
-
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/babbler_test

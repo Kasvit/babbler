@@ -19,23 +19,23 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'font-awesome-sass'
 gem 'heroicon'
+gem 'kamal'
 gem 'rubocop', require: false
 gem 'slim'
 gem 'tailwindcss-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'view_component'
-gem 'kamal'
 
 group :development, :test do
-  gem 'bundler-audit', require: false
   gem 'brakeman', require: false
+  gem 'bundler-audit', require: false
   gem 'debug', platforms: [:mri]
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry'
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem 'rubocop-rails-omakase', require: false
   gem 'dotenv'
+  gem 'rubocop-rails-omakase', require: false
 end
 
 group :development do
