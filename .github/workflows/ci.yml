@@ -60,14 +60,15 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
 
-      - name: Install Redis CLI
-        run: sudo apt-get update && sudo apt-get install -y redis-tools
-
       - name: Install dependencies
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
 
+      - name: Precompile assets
+        run: |
+          RAILS_ENV=test bundle exec rails assets:precompile
+      
       - name: Wait for PostgreSQL to be ready
         run: |
           until pg_isready -h 127.0.0.1 -p 5432 -U postgres; do
