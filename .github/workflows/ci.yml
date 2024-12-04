@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  lint:
+  rubocop:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,6 +17,9 @@ jobs:
         with:
           ruby-version: 3.2.2
           bundler-cache: true
+      - name: Install linting gems
+        run:
+          gem install bundler-audit
       - name: Generate binstubs
         run: bundle binstubs bundler-audit brakeman rubocop
       - name: Security audit dependencies
@@ -72,6 +75,9 @@ jobs:
             sleep 3
           done
 
+      - name: Install Redis and CLI tools
+        run: sudo apt-get install -y redis-server redis-tools
+      
       - name: Wait for Redis to be ready
         run: |
           until redis-cli -h localhost ping; do
