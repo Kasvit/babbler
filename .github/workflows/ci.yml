@@ -1,0 +1,88 @@
+name: Babbler CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Generate binstubs
+        run: bundle binstubs bundler-audit brakeman rubocop
+      - name: Security audit dependencies
+        run: bin/bundler-audit --update
+      - name: Security audit application code
+        run: bin/brakeman -q -w2
+      - name: Lint Ruby files
+        run: bin/rubocop --parallel
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: [3.2.2]
+
+    services:
+      postgres:
+        image: postgres:15
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+      redis:
+        image: redis:7
+        ports:
+          - "6379:6379"
+
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://rails:password@127.0.0.1:5432/rails_test
+      REDIS_URL: redis://127.0.0.1:6379/0
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          bundle install --jobs 4 --retry 3
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          until pg_isready -h localhost -p 5432; do
+            echo "Waiting for PostgreSQL..."
+            sleep 3
+          done
+
+      - name: Wait for Redis to be ready
+        run: |
+          until redis-cli -h localhost ping; do
+            echo "Waiting for Redis..."
+            sleep 3
+          done
+
+      - name: Set up database
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+
+      - name: Run tests
+        run: bundle exec rspec

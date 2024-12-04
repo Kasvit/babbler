@@ -31,3 +31,6 @@ docker build .
 docker-compose up --build
 # docker-compose down --volumes # for removing
 ```
+
+#### For development
+Create `.env.development` and `.env.test` with your fields for running server and specs.
