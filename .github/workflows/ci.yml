@@ -40,8 +40,8 @@ jobs:
           - "6379:6379"
     env:
       RAILS_ENV: test
-      # POSTGRES_USER: postgres
-      # POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
       # POSTGRES_DB: babbler_test
       # POSTGRES_HOST: 127.0.0.1
       # POSTGRES_PORT: 5432
