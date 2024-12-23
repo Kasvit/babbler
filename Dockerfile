@@ -17,7 +17,6 @@ ENV POSTGRES_DB=${POSTGRES_DB}
 ENV POSTGRES_HOST=${POSTGRES_HOST}
 ENV POSTGRES_PORT=${POSTGRES_PORT}
 ENV RAILS_ENV=${RAILS_ENV}
-# ENV DATABASE_URL="postgres://postgres:password@db:5432/babbler_development"
 ENV BUNDLE_PATH="/usr/local/bundle"
 
 FROM base as build
