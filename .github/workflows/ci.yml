@@ -38,8 +38,15 @@ jobs:
         image: redis:7
         ports:
           - "6379:6379"
-    env_file:
-      - .env.test
+    env:
+      RAILS_ENV: test
+      # POSTGRES_USER: postgres
+      # POSTGRES_PASSWORD: password
+      # POSTGRES_DB: babbler_test
+      # POSTGRES_HOST: 127.0.0.1
+      # POSTGRES_PORT: 5432
+      DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/babbler_test
+      REDIS_URL: redis://127.0.0.1:6379/1
     
     steps:
       - name: Checkout code
