@@ -33,7 +33,9 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/babbler_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: babbler_test
       redis:
         image: redis:7
         ports:
