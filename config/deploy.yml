@@ -39,9 +39,15 @@ builder:
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 #
 env:
+  clear:
+    RAILS_ENV: production
+    DATABASE_URL: postgres://<POSTGRES_USER>:<POSTGRES_PASSWORD>@<POSTGRES_HOST>:<POSTGRES_PORT>/babbler_production
   secret:
-    - ENV["DATABASE_URL"]
-    - ENV["KAMAL_REGISTRY_PASSWORD"]
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+    - POSTGRES_HOST
+    - POSTGRES_PORT
+    - KAMAL_REGISTRY_PASSWORD
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
