@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 ARG RUBY_VERSION=3.2.2
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+FROM ruby:$RUBY_VERSION-slim as base
 
 WORKDIR /rails
 
@@ -24,7 +24,8 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     build-essential git libpq-dev libvips pkg-config nodejs npm && \
-    npm install -g yarn
+    npm install -g yarn && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile Gemfile.lock ./
 
@@ -42,8 +43,7 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 FROM base
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y \
-    curl libvips postgresql-client && \
+    apt-get install --no-install-recommends -y curl libvips postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 COPY --from=build /usr/local/bundle /usr/local/bundle

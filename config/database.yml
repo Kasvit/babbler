@@ -10,12 +10,12 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB") { "babbler" } %>_development
+  database: babbler_development
 
 test:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB") { "babbler" } %>_test
+  database: babbler_test
 
 production:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB") { "babbler" } %>_production
+  database: babbler_production

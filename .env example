@@ -1,6 +1,6 @@
 export RAILS_ENV=development
 export NODE_ENV=development
-export REDIS_URL=redis://redis:6379/0
+export REDIS_URL=redis://localhost:6379/0
 export CABLE_URL=ws://action-cable:28080
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=password
