@@ -1,14 +1,24 @@
-import { Controller } from '@hotwired/stimulus'
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller='flash-message'
 export default class extends Controller {
+  static targets = ["container"];
+
   connect() {
-    setTimeout(() => {
-      this.element.remove();
-    }, 2000)
+    this.element.classList.add("animate-slide-in-right");
+    setTimeout(() => this.hide(), 2000);
+  }
+
+  hide() {
+    this.element.classList.remove("animate-slide-in-right");
+    this.element.classList.add("animate-slide-out-right");
+    this.element.addEventListener("animationend", () => this.remove(), { once: true });
   }
 
   close() {
-    this.element.remove()
+    this.hide();
+  }
+
+  remove() {
+    this.element.remove();
   }
 }

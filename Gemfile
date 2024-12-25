@@ -9,6 +9,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.4'
 gem 'redis'
+gem 'sassc-rails'
 gem 'sidekiq'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
@@ -17,7 +18,6 @@ gem 'turbo-rails'
 # gem "kredis"
 gem 'bootsnap', require: false
 gem 'devise'
-gem 'font-awesome-sass'
 gem 'heroicon'
 gem 'kamal'
 gem 'rubocop', require: false
@@ -41,6 +41,8 @@ group :development do
   gem 'annotate'
   gem 'rspec-rails'
   gem 'web-console'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
