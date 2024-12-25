@@ -1,6 +1,6 @@
 <% if flash.any? %>
   <div data-controller='flash-message' id='flash-message'>
-    <div class='py-2 justify-items-stretch'>
+    <div class='fixed right-0 z-40 shadow-md rounded-lg transition-transform transform animate-fade-in'>
       <% flash.each do |type, message| %>
         <%= render FlashMessage::Component.new(type: type, message: message) %>
       <% end %>

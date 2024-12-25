@@ -9,7 +9,8 @@ Something similar to twitter.
 - [x] Add docker support
 - [x] Add CI/CD
 - [ ] Deploy to Kamal
-- [ ] Replace font-awesome with heroicon
+- [x] Move flash messages to a new place
+- [x] Replace font-awesome with heroicon
 - [ ] Add about me
 - [ ] Add pages for 'My tweets', user profile with his tweets
 - [ ] Add liked tweets
