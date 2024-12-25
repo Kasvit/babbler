@@ -9,7 +9,6 @@ gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.4'
 gem 'redis'
-gem 'sassc'
 gem 'sassc-rails'
 gem 'sidekiq'
 gem 'sprockets-rails'
@@ -42,6 +41,8 @@ group :development do
   gem 'annotate'
   gem 'rspec-rails'
   gem 'web-console'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
