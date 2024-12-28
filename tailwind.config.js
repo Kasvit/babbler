@@ -10,6 +10,18 @@ module.exports = {
     './node_modules/flowbite/**/*.js',
     './config/initializers/heroicon.rb',
   ],
+  darkMode: 'class',
+  safelist: [
+    {
+      pattern: /bg-(green|red|yellow|blue|gray)-(100|400|500|700)/,
+    },
+    {
+      pattern: /border-(green|red|yellow|blue|gray)-(100|400|500|700)/,
+    },
+    {
+      pattern: /text-(green|red|yellow|blue|gray)-(100|400|500|700)/,
+    },
+  ],
   theme: {
     extend: {
       fontFamily: {

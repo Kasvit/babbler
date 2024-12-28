@@ -1,9 +1,27 @@
-= form_with(model: tweet, html: { class: "bg-white shadow-md rounded-lg p-4 mb-4" }) do |f|
-  - if tweet.errors.any?
-    .flex.items-start.error-message.text-red-600
-      = tweet.errors.full_messages.to_sentence.capitalize
-  .w-full.mb-2
-    = f.text_area :content, placeholder: "What do you want to say...", class: "flex-auto w-full p-0 bordered outline-none"
-    .flex.space-x-4.mt-4
-      = link_to 'Cancel', tweets_path, class: 'px-4 py-1 bg-yellow-400 text-white rounded-md hover:bg-yellow-500'
-      = f.submit "Tweet", class: "bg-blue-500 hover:bg-opacity-90 text-white rounded px-4 py-1"
+= form_with(model: tweet, html: { class: "bg-white shadow-md rounded-lg p-4 mb-4 relative" }) do |f|
+  div data-controller="textarea-autogrow" data-textarea-autogrow-max-length-value="280"    
+    .flex.items-start.space-x-3
+      .flex-shrink-0.hidden.lg:block
+        = render Avatar::Component.new(user: current_user)
+
+      .flex-grow.relative
+        .mb-4.lg:mb-0
+          .lg:absolute.right-0.lg:-top-6.flex.flex-col.lg:flex-row.items-start.lg:items-center.justify-between.w-full.mb-2.lg:mb-0
+            .text-red-600.text-sm.mb-2.lg:mb-0.order-first data-textarea-autogrow-target="error"
+              = tweet.errors.full_messages.to_sentence.capitalize if tweet.errors.any?
+            span.text-sm.whitespace-nowrap.order-last data-textarea-autogrow-target="counter"
+              span.font-medium data-textarea-autogrow-target="counterNumber" 280
+              |  characters remaining
+
+        = f.text_area :content,
+          placeholder: "What do you want to say...", 
+          class: "w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none mb-8",
+          rows: 2,
+          data: { textarea_autogrow_target: "textarea" }
+
+    .flex.space-x-2.absolute.bottom-4.right-4
+      button type="submit" class="text-gray-400 hover:text-blue-600"
+        = heroicon 'paper-airplane', options: { class: 'w-5 h-5' }
+      
+      = link_to tweets_path, class: "text-gray-400 hover:text-yellow-600" do
+        = heroicon 'x-mark', options: { class: 'w-5 h-5' }

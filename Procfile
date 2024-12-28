@@ -1,5 +1,4 @@
-web: env RUBY_DEBUG_OPEN=true bin/rails server # >> log/web.log
+rails: unset PORT && bin/rails server -p 3000
 js: yarn build --watch
 css: yarn build:css --watch
-#css: bin/rails tailwindcss:watch
 sidekiq: bundle exec sidekiq # >> log/sidekiq.log

@@ -75,3 +75,5 @@ yarn-debug.log*
 
 .vscode/
 get-docker.sh
+/app/assets/builds/*
+!/app/assets/builds/.keep

@@ -38,6 +38,9 @@ RUN yarn install --check-files && \
     yarn add flowbite && \
     yarn cache clean
 
+RUN yarn build && \
+    yarn build:css
+
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 FROM base
