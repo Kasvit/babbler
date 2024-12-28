@@ -1,0 +1,172 @@
+section#about.min-h-screen.py-16
+  .container.mx-auto
+    .flex.flex-col.items-center.lg:items-start.gap-8
+      .flex.flex-col.items-center.lg:flex-row.lg:items-start.gap-8
+        = image_tag "about.jpg", class: "place-self-center inset-0 w-48 h-48 object-cover rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300", alt: "Profile picture"
+        .text-center.lg:text-left
+          h1.text-4xl.font-bold.mb-4 Vitalii Kasianchuk
+          p.text-xl.text-gray-600.mb-6 Full Stack Ruby on Rails Developer
+          p.text-gray-600.max-w-2xl.leading-relaxed
+            | I am a Full Stack Ruby on Rails Developer with over 5 years of experience in web development. 
+            | I have successfully delivered several interviews and collaborated effectively with colleagues. 
+            | My recent project, lasting over 3 years, involved extensive full-stack development, including 
+            | developing new features and API integrations. I am passionate about delivering robust and 
+            | scalable solutions and continuously strive to expand my knowledge and expertise in the 
+            | software development field.
+
+      .w-full
+        h2#skills.text-2xl.font-bold.text-gray-800.mb-8.text-center.lg:text-left
+          a.hover:text-blue-600.transition-colors href="#skills" Skills
+
+        .space-y-8
+          .space-y-2
+            .text-sm.font-medium.text-gray-500.mb-3 Expert Level
+            .flex.flex-wrap.gap-3.[content:flex-start]
+              - expert_skills = ['Ruby on Rails', 'PostgreSQL', 'Ruby', 'Redis', 'Rspec', 'HTML', 'CSS', 'Teamwork']
+              - expert_skills.each do |skill|
+                div class="px-4 py-2 rounded-full bg-blue-500 text-white font-medium text-center whitespace-nowrap [order:#{skill.length}]" = skill
+
+          .space-y-2
+            .text-sm.font-medium.text-gray-500.mb-3 Advanced Level
+            .flex.flex-wrap.gap-3.[content:flex-start]
+              - advanced_skills = ['JavaScript', 'React', 'Stimulus', 'AWS', 'MySQL', 'MongoDB', 'Sidekiq', 'CI/CD', 'Mentoring']
+              - advanced_skills.each do |skill|
+                div class="px-4 py-2 rounded-full bg-yellow-500 text-white font-medium text-center whitespace-nowrap [order:#{skill.length}]" = skill
+
+          .space-y-2
+            .text-sm.font-medium.text-gray-500.mb-3 Intermediate Level
+            .flex.flex-wrap.gap-3.[content:flex-start]
+              - intermediate_skills = ['Effective Communication', 'Result-orientation', 'Critical Thinking', 'Bootstrap', 'Tailwind', 'GraphQL', 'BuildKite', 'Postman', 'OpenAPI', 'Datadog', 'Splunk', 'Honeybadger', 'Opsgenie', 'Jira', 'Figma', 'Terraform', 'Go']
+              - intermediate_skills.each do |skill|
+                div class="px-4 py-2 rounded-full bg-yellow-200 text-yellow-800 font-medium text-center whitespace-nowrap [order:#{skill.length}]" = skill
+
+    .w-full.py-4
+      h2#experience.text-2xl.font-bold.text-gray-800.mt-8.text-center.lg:text-left
+        a.hover:text-blue-600.transition-colors href="#experience" Experience
+
+      .space-y-12
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              = link_to "IFNTUNG", "https://nung.edu.ua/", class: "text-blue-600 hover:text-blue-800 font-bold text-lg", target: "_blank", rel: "noopener"
+              h3.text-lg.font-medium Assistant at the Department of Software Engineering
+            time.text-gray-500.whitespace-nowrap 2024 - NOW
+          ul.list-disc.list-inside.space-y-2.text-gray-600
+            li Teaching programming fundamentals to first-year students
+            li Developing and maintaining educational materials
+            li Conducting practical classes and workshops
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              = link_to "EPAM", "https://www.epam.com/", class: "text-blue-600 hover:text-blue-800 font-bold text-lg", target: "_blank", rel: "noopener"
+              h3.text-lg.font-medium Software Developer
+            time.text-gray-500.whitespace-nowrap 2021 - 2024
+          ul.list-disc.list-inside.space-y-2.text-gray-600
+            li Full stack developer in the international team
+            li Responsible for implementing new features, supporting, improving, and refactoring existing functionality
+            li Contacted the business side to ensure the best implementation of their needs based on requirements
+            li
+              | Worked with technologies: 
+              span.text-gray-700.font-medium AWS, React, Stripe, DataDog, Honeybadger, and GitHub Copilot
+            li The project was based on the sprints system, and every day, we had calls with a customer
+            li Conducted interviews and participated in the mentor program
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              h3.text-blue-600.hover:text-blue-800.font-bold.text-lg Webmil
+              h3.text-lg.font-medium Software Developer
+            time.text-gray-500.whitespace-nowrap 2020 - 2021
+          ul.list-disc.list-inside.space-y-2.text-gray-600
+            li Full stack single developer in a foreign project
+            li Developed and implemented new features on the API side for mobile and web applications
+            li Implemented Stripe payments
+            li Provided long-term support
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              h3.text-blue-600.hover:text-blue-800.font-bold.text-lg Webmil
+              h3.text-lg.font-medium Software Developer
+            time.text-gray-500.whitespace-nowrap 2019 - 2020
+          ul.list-disc.list-inside.space-y-2.text-gray-600
+            li Full stack developer in a domestic project
+            li Developed and implemented a new customer portal and admin panel
+            li Added new features related to QR codes, their generation, and scanning
+            li
+              | Worked with technologies: 
+              span.text-gray-700.font-medium Ruby, Redis, PostgreSQL, OpenAPI Specification (OAS), and MySQL
+            li Provided long-term support
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              h3.text-blue-600.hover:text-blue-800.font-bold.text-lg Webmil
+              h3.text-lg.font-medium Software Developer
+            time.text-gray-500.whitespace-nowrap 2018 - 2019
+          ul.list-disc.list-inside.space-y-2.text-gray-600
+            li Full stack developer in a foreign project
+            li E-commerce website for an EU distribution company
+            li Participated in the development of the project from scratch
+            li Migrated logic from the service to a separate gem
+            li
+              | Used technologies: 
+              span.text-gray-700.font-medium Ruby, Ruby on Rails, MongoDB, Rails Admin, Redis
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              h3.text-blue-600.hover:text-blue-800.font-bold.text-lg Webmil
+              h3.text-lg.font-medium Software Developer
+            time.text-gray-500.whitespace-nowrap 2018
+          ul.list-disc.list-inside.space-y-2.text-gray-600
+            li Full stack developer
+            li Recruitment platform for optimized selection of candidates for the employer
+            li Created an automated system for collecting and sorting information that can interact with it
+            li Helped this platform optimize the recruitment processes
+            li Participated in the development of the project from scratch
+            li
+              | Used technologies: 
+              span.text-gray-700.font-medium Ruby, Ruby on Rails, MongoDB, Stimulus
+
+    .w-full
+      h2#education.text-2xl.font-bold.text-gray-800.my-8.text-center.lg:text-left
+        a.hover:text-blue-600.transition-colors href="#education" Education
+
+      .space-y-12
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              h3.text-blue-600.hover:text-blue-800.font-bold.text-lg Self Education
+              .text-lg.font-medium Continuous Learning
+            time.text-gray-500.whitespace-nowrap 2018 - NOW
+          .space-y-2.text-gray-600
+            p EPAM, LinkedIn, Youtube
+            p Constantly improving skills through online platforms and professional resources
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              = link_to "IFNTUNG", "https://nung.edu.ua/", class: "text-blue-600 hover:text-blue-800 font-bold text-lg", target: "_blank", rel: "noopener"
+              h3.text-lg.font-medium Software Engineer
+            time.text-gray-500.whitespace-nowrap 2023 - 2024
+          p.text-gray-600.italic Ivano-Frankivsk National Technical University of Oil and Gas
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              h3.text-blue-600.hover:text-blue-800.font-bold.text-lg Professional Courses
+              .text-lg.font-medium Ruby on Rails Development
+            time.text-gray-500.whitespace-nowrap 2018
+          .space-y-2.text-gray-600
+            p.italic Ivano-Frankivsk SoftServe, Webmil
+            p Intensive training in web development using Ruby on Rails framework
+
+        article.space-y-4
+          header.flex.flex-col.lg:flex-row.lg:items-center.lg:justify-between.gap-2
+            div
+              = link_to "IFNMU", "https://www.ifnmu.edu.ua/en/", class: "text-blue-600 hover:text-blue-800 font-bold text-lg", target: "_blank", rel: "noopener"
+              h3.text-lg.font-medium Master of Pediatrician
+            time.text-gray-500.whitespace-nowrap 2010 - 2018
+          p.text-gray-600.italic Ivano-Frankivsk National Medical University

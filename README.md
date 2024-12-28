@@ -11,7 +11,7 @@ Something similar to twitter.
 - [ ] Deploy to Kamal
 - [x] Move flash messages to a new place
 - [x] Replace font-awesome with heroicon
-- [ ] Add about me
+- [x] Add about me
 - [ ] Add pages for 'My tweets', user profile with his tweets
 - [ ] Add liked tweets
 - [ ] Add follows

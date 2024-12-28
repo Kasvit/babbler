@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 ruby '3.2.2'
-gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
@@ -22,7 +21,6 @@ gem 'heroicon'
 gem 'kamal'
 gem 'rubocop', require: false
 gem 'slim'
-gem 'tailwindcss-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'view_component'
 
