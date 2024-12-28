@@ -63,6 +63,13 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
         working-directory: app/javascript
+      
+      - name: Create asset directories
+        run: |
+          mkdir -p app/assets/builds
+          mkdir -p app/assets/stylesheets
+          mkdir -p app/javascript
+          mkdir -p vendor/javascript
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
