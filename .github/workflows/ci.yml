@@ -61,15 +61,8 @@ jobs:
           cache: 'npm'
 
       - name: Install NPM dependencies
-        run: npm install
+        run: yarn install
         working-directory: app/javascript
-      
-      - name: Create asset directories
-        run: |
-          mkdir -p app/assets/builds
-          mkdir -p app/assets/stylesheets
-          mkdir -p app/javascript
-          mkdir -p vendor/javascript
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -84,6 +77,12 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+
+      - name: Build TailwindCSS
+        run: yarn build:css
+
+      - name: Clean old assets
+        run: RAILS_ENV=test bundle exec rails assets:clobber
 
       - name: Precompile assets
         run: |
